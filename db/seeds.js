@@ -31,13 +31,13 @@ const todo3 = new Todo({
 });
 
 
-const list1 = mongoose.Schema({
+const list1 = new List({
     listTitle: 'Monday',
     listDescription: 'Things to do today',
     todos: [todo1, todo2, todo3]
 });
 
-const user1 = mongoose.Schema({
+const user1 = new User({
     userName: 'Jaws',
     email: 'JD@gmail.com',
     password: '1234567890',
