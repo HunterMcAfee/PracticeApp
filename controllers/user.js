@@ -22,11 +22,17 @@ router.post('/', (req, res) => {
         })
         .catch( (err) => {
             console.log(err);
-        })
+        });
 });
 
 router.put('/:userId', (req, res) => {
-    
+    User.findByIdAndUpdate(req.params.userId, req.body.payload)
+        .then( (user) => {
+            console.log(`User with ID ${req.params.userId} was updated.`)
+        })
+        .catch( (err) => {
+            console.log(err);
+        });
 });
 
 module.exports = router;
