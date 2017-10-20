@@ -13,7 +13,6 @@ router.get('/:userId', (req, res) => {
         });
 });
 
-
 router.post('/', (req, res) => {
     let newUser = new User(req.body.payload);
     newUser.save()
@@ -33,6 +32,16 @@ router.put('/:userId', (req, res) => {
         .catch( (err) => {
             console.log(err);
         });
+});
+
+router.delete('/:userId', (req, res) => {
+    User.findByIdAndRemove(req.params.userId)
+        .then( (user) => {
+            console.log(`User with ID ${req.params.userId} was deleted.`)
+        })
+        .catch( (err) => {
+            console.log(err);
+        })
 });
 
 module.exports = router;
