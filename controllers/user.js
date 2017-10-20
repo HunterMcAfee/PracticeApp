@@ -14,16 +14,19 @@ router.get('/:userId', (req, res) => {
 });
 
 
-// router.post('/', (req, res) => {
-//     const newUser = new User;
-//     newUser = req.body.payload
-//     newUser.save()
-//         .then( (user) => {
-//             console.log('New user was saved.');
-//         })
-//         .catch( (err) => {
-//             console.log(err);
-//         })
-// })
+router.post('/', (req, res) => {
+    let newUser = new User(req.body.payload);
+    newUser.save()
+        .then( (user) => {
+            console.log('New user was saved.');
+        })
+        .catch( (err) => {
+            console.log(err);
+        })
+});
+
+router.put('/:userId', (req, res) => {
+    
+});
 
 module.exports = router;
