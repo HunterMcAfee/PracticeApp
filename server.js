@@ -25,7 +25,7 @@ app.use(bodyParser.json());
 
 app.use('/api/user', UserController);
 app.use('/api/list', ListController);
-// app.use('/api/todo', TodoController);
+app.use('/api/todo', TodoController);
 
 app.get('/', (req, res) => {
     console.log('Hello');
