@@ -8,8 +8,6 @@ const TodoController = require('./controllers/todo');
 
 const app = express();
 
-
-
 mongoose.Promise = global.Promise;
 mongoose.connect(process.env.MONGODB_URI);
 
@@ -26,7 +24,7 @@ app.use(express.static(__dirname + '/client/build'));
 app.use(bodyParser.json());
 
 app.use('/api/user', UserController);
-// app.use('/api/list', ListController);
+app.use('/api/list', ListController);
 // app.use('/api/todo', TodoController);
 
 app.get('/', (req, res) => {
