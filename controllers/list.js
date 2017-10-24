@@ -46,7 +46,8 @@ router.put('/:userId/:listId', (req, res) => {
             let foundList = user.lists.find((list) => {
                 return list.id === req.params.listId
             })
-            foundList = req.body.payload;
+            foundList.listTitle = req.body.payload.listTitle;
+            foundList.listDescription = req.body.payload.listDescription;
             user.save();
             console.log(`List was updated`);
         })

@@ -14,19 +14,19 @@ Todo.remove({}, (err) => console.log(err));
 
 const todo1 = new Todo({
     todoTitle: 'Dog',
-    listDescription: 'Walk the dog for 30 minutes.',
+    todoDescription: 'Walk the dog for 30 minutes.',
     status: false
 });
 
 const todo2 = new Todo({
     todoTitle: 'Dishes',
-    listDescription: 'Wash the dishes in the sink.',
+    todoDescription: 'Wash the dishes in the sink.',
     status: false
 });
 
 const todo3 = new Todo({
     todoTitle: 'Bed',
-    listDescription: 'Make the guest bed for the weekend.',
+    todoDescription: 'Make the guest bed for the weekend.',
     status: true
 });
 

@@ -1,5 +1,5 @@
 const express = require('express');
-const router = express.Router();
+const router = express.Router({mergeParams: true});
 
 const User = require('../models/user');
 const List = require('../models/list');
@@ -50,20 +50,25 @@ router.post('/:userId/:listId', (req, res) => {
         });
 });
 
-// router.put('/:userId/:listId', (req, res) => {
-//     User.findById(req.params.userId)
-//         .then( (user) => {
-//             let foundList = user.lists.find((list) => {
-//                 return list.id === req.params.listId
-//             })
-//             foundList = req.body.payload;
-//             user.save();
-//             console.log(`List was updated`);
-//         })
-//         .catch( (err) => {
-//             console.log(err);
-//         });
-// });
+router.put('/:userId/:listId/:todoId', (req, res) => {
+    User.findById(req.params.userId)
+        .then( (user) => {
+            let foundList = user.lists.find((list) => {
+                return list.id === req.params.listId
+            })
+            let foundTodo = foundList.todos.find((todo) => {
+                return todo.id === req.params.todoId
+            })
+            foundTodo.todoTitle = req.body.payload.todoTitle;
+            foundTodo.todoDescription = req.body.payload.todoDescription;
+            foundTodo.status = req.body.payload.status;
+            user.save();
+            res.json(foundTodo);
+        })
+        .catch( (err) => {
+            console.log(err);
+        });
+});
 
 // router.delete('/:userId/:listId', (req, res) => {
 //     User.findById(req.params.userId)
