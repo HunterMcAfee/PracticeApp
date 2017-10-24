@@ -70,19 +70,22 @@ router.put('/:userId/:listId/:todoId', (req, res) => {
         });
 });
 
-// router.delete('/:userId/:listId', (req, res) => {
-//     User.findById(req.params.userId)
-//         .then( (user) => {
-//             let foundList = user.lists.find((list) => {
-//                 return list.id === req.params.listId
-//             })
-//             user.lists.remove(foundList)
-//             user.save();
-//             console.log(`List was successfully deleted`);
-//         })
-//         .catch( (err) => {
-//             console.log(err);
-//         })
-// });
+router.delete('/:userId/:listId/:todoId', (req, res) => {
+    User.findById(req.params.userId)
+        .then( (user) => {
+            let foundList = user.lists.find((list) => {
+                return list.id === req.params.listId
+            })
+            let foundTodo = foundList.todos.find((todo) => {
+                return todo.id === req.params.todoId
+            })
+            foundList.todos.remove(foundTodo)
+            user.save();
+            console.log(`Todo was successfully deleted`);
+        })
+        .catch( (err) => {
+            console.log(err);
+        })
+});
 
 module.exports = router;
