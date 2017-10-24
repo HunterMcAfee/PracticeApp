@@ -27,16 +27,19 @@ router.get('/:userId/:listId', (req, res) => {
         });
 });
 
-// router.post('/', (req, res) => {
-//     let newUser = new User(req.body.payload);
-//     newUser.save()
-//         .then( (user) => {
-//             console.log('New user was saved.');
-//         })
-//         .catch( (err) => {
-//             console.log(err);
-//         });
-// });
+router.post('/:userId', (req, res) => {
+    let newList = new List(req.body.payload);
+    User.findById(req.params.userId)
+    .then( (user) => {
+        user.lists.push(newList);
+        user.save();
+        console.log(`New list was created for User ID ${req.params.userId}`);
+    })
+    .catch( (err) => {
+        console.log(err);
+    });
+ 
+});
 
 // router.put('/:userId', (req, res) => {
 //     User.findByIdAndUpdate(req.params.userId, req.body.payload)
