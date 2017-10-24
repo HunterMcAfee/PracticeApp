@@ -48,21 +48,26 @@ router.put('/:userId/:listId', (req, res) => {
             })
             foundList = req.body.payload;
             user.save();
-            console.log(`List was updated.`);
+            console.log(`List was updated`);
         })
         .catch( (err) => {
             console.log(err);
         });
 });
 
-// router.delete('/:userId', (req, res) => {
-//     User.findByIdAndRemove(req.params.userId)
-//         .then( (user) => {
-//             console.log(`User with ID ${req.params.userId} was deleted.`)
-//         })
-//         .catch( (err) => {
-//             console.log(err);
-//         })
-// });
+router.delete('/:userId/:listId', (req, res) => {
+    User.findById(req.params.userId)
+        .then( (user) => {
+            let foundList = user.lists.find((list) => {
+                return list.id === req.params.listId
+            })
+            user.lists.remove(foundList)
+            user.save();
+            console.log(`List was successfully deleted`);
+        })
+        .catch( (err) => {
+            console.log(err);
+        })
+});
 
 module.exports = router;
