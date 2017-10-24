@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 
 const todoSchema = mongoose.Schema({
     todoTitle: String,
-    listDescription: String,
+    todoDescription: String,
     status: Boolean
 });
 

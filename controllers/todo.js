@@ -34,21 +34,21 @@ router.get('/:userId/:listId/:todoId', (req, res) => {
         });
 });
 
-// router.post('/:userId/:listId', (req, res) => {
-//     let newTodo = new Todo(req.body.payload);
-//     User.findById(req.params.userId)
-//         .then( (user) => {
-//             let foundList = user.lists.find((list) => {
-//                 return list.id === req.params.listId
-//             }); 
-//             foundList.todos.push(newTodo);
-//             user.save();
-//             console.log(`New todo was created`);
-//         })
-//         .catch( (err) => {
-//             console.log(err);
-//         });
-// });
+router.post('/:userId/:listId', (req, res) => {
+    let newTodo = new Todo(req.body.payload);
+    User.findById(req.params.userId)
+        .then( (user) => {
+            let foundList = user.lists.find((list) => {
+                return list.id === req.params.listId
+            }); 
+            foundList.todos.push(newTodo);
+            user.save();
+            console.log(`New todo was created`);
+        })
+        .catch( (err) => {
+            console.log(err);
+        });
+});
 
 // router.put('/:userId/:listId', (req, res) => {
 //     User.findById(req.params.userId)
