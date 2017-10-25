@@ -3,6 +3,16 @@ const router = express.Router();
 
 const User = require('../models/user');
 
+router.get('/', (req, res) => {
+    User.find({})
+        .then( (user) => {
+            res.json(user);
+        })
+        .catch( (err) => {
+            console.log(err);
+        });
+});
+
 router.get('/:userId', (req, res) => {
     User.findById(req.params.userId)
         .then( (user) => {
