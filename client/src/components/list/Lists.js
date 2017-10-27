@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 
 class Lists extends Component {
     constructor() {
@@ -29,8 +30,14 @@ class Lists extends Component {
                 {this.state.lists.map( (list, i) => {
                     return (
                         <div key={i}>
+
                             <div>Title: {list.listTitle}</div>
                             <div>Description: {list.listDescription}</div>
+
+                            <Link to={`/user/${this.props.match.params.userId}/list/${list._id}`}>
+                                <button>Go to</button>
+                            </Link>
+
                         </div>
                     )
                 })}

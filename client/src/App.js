@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route } from 'react-router-dom';
 import Login from './components/user/Login.js';
 import Profile from './components/user/Profile.js';
 import Lists from './components/list/Lists.js';
+import List from './components/list/List';
 
 class App extends Component {
   render() {
@@ -13,6 +14,7 @@ class App extends Component {
         <Route exact path={`/user/:userId`} component={Profile} />
 
         <Route exact path={`/user/:userId/lists`} component={Lists} />
+        <Route exact path={`/user/:userId/list/:listId`} component={List} />
         </div>
       </Router>
     );
