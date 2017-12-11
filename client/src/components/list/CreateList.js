@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import axios from 'axios';
 
 class CreateList extends Component {
     constructor() {
@@ -18,6 +19,16 @@ class CreateList extends Component {
         this.setState(newState);
     }
 
+    _createList = async (e) => {
+        e.preventDefault();
+        try {
+            const res = await axios.post(`/api/list/${this.props.match.params.userId}`, this.state.payload);
+        } 
+        catch (res) {
+            console.log(res);
+        }
+    }
+
     render() {
         return (
             <div>
@@ -32,6 +43,7 @@ class CreateList extends Component {
                         name="listDescription" 
                         value={this.state.payload.listDescription}
                     />
+                    <button onClick={this._createList}>Submit</button>
                 </form>
             </div>
         );

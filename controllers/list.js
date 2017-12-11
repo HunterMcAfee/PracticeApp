@@ -28,7 +28,7 @@ router.get('/:userId/:listId', (req, res) => {
 });
 
 router.post('/:userId', (req, res) => {
-    let newList = new List(req.body.payload);
+    let newList = new List(req.body);
     User.findById(req.params.userId)
         .then( (user) => {
             user.lists.push(newList);
