@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 
 class CreateList extends Component {
     constructor() {
@@ -45,6 +46,12 @@ class CreateList extends Component {
                     />
                     <button onClick={this._createList}>Submit</button>
                 </form>
+
+                <br />
+
+                <Link to={`/user/${this.props.match.params.userId}/lists`}>
+                                <button>Go Back</button>
+                </Link>
             </div>
         );
     }

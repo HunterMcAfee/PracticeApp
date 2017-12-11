@@ -27,6 +27,10 @@ class Lists extends Component {
     render() {
         return (
             <div>
+                <Link to={`/user/${this.props.match.params.userId}/createlist`}>
+                                <button>Create List</button>
+                </Link>
+
                 {this.state.lists.map( (list, i) => {
                     return (
                         <div key={i}>
