@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 
 class List extends Component {
     constructor() {
@@ -26,12 +26,26 @@ class List extends Component {
         }
     }
 
+    _deleteList = async (e) => {
+        e.preventDefault();
+        try {
+            const userId = this.props.match.params.userId;
+            const listId = this.props.match.params.listId;
+            const res = await axios.delete(`/api/list/${userId}/${listId}`)
+        }
+        catch (res) {
+            console.log(res);
+        }
+    }
+
     render() {
         const userId = this.props.match.params.userId;
         const listId = this.props.match.params.listId;
 
         return (
             <div>
+                <button onClick={this._deleteList}>Delete</button>
+
                 <div>Title: {this.state.list.listTitle}</div>
                 <div>Description: {this.state.list.listDescription}</div>
                 <br />
